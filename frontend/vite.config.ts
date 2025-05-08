@@ -12,9 +12,10 @@ export default defineConfig({
     },
   },
   server: {
-    host: true, // explicitly allows all hosts (including your subdomains)
+    host: true,
     port: 5173,
     strictPort: true,
+    allowedHosts: ['brapshield.fartaxa.com'],  // explicitly allow your subdomain
     hmr: {
       protocol: 'ws',
       host: 'localhost',

@@ -2,6 +2,7 @@ fastapi
 uvicorn[standard]
 sqlalchemy
 selenium
-webdriver-manager
-beautifulsoup4
+webdriver_manager
 apscheduler
+requests
+beautifulsoup4

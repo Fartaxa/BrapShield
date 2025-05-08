@@ -1,23 +1,13 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import tailwindcss from 'tailwindcss';
-import autoprefixer from 'autoprefixer';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  plugins: [react()],
-  css: {
-    postcss: {
-      plugins: [tailwindcss(), autoprefixer()],
-    },
-  },
+  plugins: [react(), tailwindcss()],
   server: {
-    host: '0.0.0.0', // Explicitly listen on all network interfaces
+    host: '0.0.0.0',
     port: 5173,
     strictPort: true,
     allowedHosts: ['brapshield.fartaxa.com'],
-    hmr: {
-      host: 'brapshield.fartaxa.com',
-      protocol: 'wss'
-    },
   },
 });

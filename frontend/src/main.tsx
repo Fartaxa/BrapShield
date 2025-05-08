@@ -3,7 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import FomoDashboard from './FomoDashboard';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const container = document.getElementById('root');
+
+if (!container) {
+  throw new Error('Root container not found');
+}
+
+ReactDOM.createRoot(container).render(
   <React.StrictMode>
     <FomoDashboard />
   </React.StrictMode>,

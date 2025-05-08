@@ -9,12 +9,11 @@
     "noImplicitAny": false,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "target": "ESNext"
+    "target": "ESNext",
+    "isolatedModules": true,
+    "noEmit": true,
+    "strict": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "exclude": ["node_modules"]
 }

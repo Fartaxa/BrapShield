@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   css: {
@@ -12,13 +11,13 @@ export default defineConfig({
     },
   },
   server: {
-    host: true,
+    host: '0.0.0.0', // Explicitly listen on all network interfaces
     port: 5173,
     strictPort: true,
-    allowedHosts: ['brapshield.fartaxa.com'],  // explicitly allow your subdomain
+    allowedHosts: ['brapshield.fartaxa.com'],
     hmr: {
-      protocol: 'ws',
-      host: 'localhost',
+      host: 'brapshield.fartaxa.com',
+      protocol: 'wss'
     },
   },
 });

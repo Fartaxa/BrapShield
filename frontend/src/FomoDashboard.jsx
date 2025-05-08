@@ -140,7 +140,7 @@ const fetchCreators = async (sortByParam = sortBy, orderByParam = orderBy) => {
   const initWebSocket = () => {
     if (ws) return;
 
-    ws = new WebSocket(`ws://localhost:8000/ws/tokens`);
+    ws = new WebSocket(`${import.meta.env.VITE_BACKEND_URL.replace(/^http/, 'ws')}/ws/tokens`);
     
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);

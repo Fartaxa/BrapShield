@@ -327,6 +327,13 @@ const handleSort = (column) => {
             </div>
             <div className="flex items-center space-x-4">
 <a
+  href="https://fartaxa.com"
+  rel="noopener noreferrer"
+  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center"
+>
+  HOME
+</a>
+ <a
   href="https://fomo.biz/dex/swap?inputCurrency=TARA&outputCurrency=0x2F38caB64A252a87c68414BF24A1d01F977E6fbe"
   target="_blank"
   rel="noopener noreferrer"
@@ -334,13 +341,6 @@ const handleSort = (column) => {
 >
   Buy $FARTAX
 </a>
-              <button
-                onClick={fetchCreators}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center"
-              >
-                <RefreshCw size={18} className="mr-2" />
-                Refresh
-              </button>
               <button
                 onClick={exportToCSV}
                 className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center"

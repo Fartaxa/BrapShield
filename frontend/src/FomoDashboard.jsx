@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 
 // API configuration
-const API_BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1`;
+const API_BASE_URL = `${import.meta.env.VITE_BACKEND_URL}`;
 
 
 // WebSocket connection

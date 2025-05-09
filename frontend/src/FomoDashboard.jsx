@@ -94,9 +94,9 @@ const fetchCreators = async (sortByParam = sortBy, orderByParam = orderBy) => {
   setLoading(true);
   try {
 const [tokensRes, creatorsRes, statsRes] = await Promise.all([
-  fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/tokens`),
-  fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/creators?sort_by=${sortByParam}&order=${orderByParam}`),
-  fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/stats`)
+  fetch(`${API_BASE_URL}/tokens`),
+  fetch(`${API_BASE_URL}/creators?sort_by=${sortByParam}&order=${orderByParam}`),
+  fetch(`${API_BASE_URL}/stats`)
 ]);
 
     const tokensData = await tokensRes.json();

@@ -93,11 +93,11 @@ useEffect(() => {
 const fetchCreators = async (sortByParam = sortBy, orderByParam = orderBy) => {
   setLoading(true);
   try {
-    const [tokensRes, creatorsRes, statsRes] = await Promise.all([
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/tokens`),
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/creators?sort_by=${sortByParam}&order=${orderByParam}`),
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/stats`)
-    ]);
+const [tokensRes, creatorsRes, statsRes] = await Promise.all([
+  fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/tokens`),
+  fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/creators?sort_by=${sortByParam}&order=${orderByParam}`),
+  fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/stats`)
+]);
 
     const tokensData = await tokensRes.json();
     const creatorsData = await creatorsRes.json();

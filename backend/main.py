@@ -80,8 +80,8 @@ def get_creators(sort_by: str = "token_count", order: str = "desc"):
     return creators_list
 
 # Explicitly defined /tokens endpoint as you asked for
-@app.get("/tokens")
-def tokens():
+@app.get("/api/v1/tokens")
+def tokens_api_v1():
     db = SessionLocal()
     tokens = db.query(Token).all()
 

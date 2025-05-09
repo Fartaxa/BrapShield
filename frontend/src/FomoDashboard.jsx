@@ -53,19 +53,19 @@ const [statsHistory, setStatsHistory] = useState({
 
   // Fetch dashboard stats
   const fetchStats = async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/stats`, {
-        headers: { 'X-API-Key': API_KEY }
-      });
-      const data = await response.json();
-      setStats(data);
-    } catch (error) {
-      console.error('Error fetching stats:', error);
-    }
-  };
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/v1/stats`, {
+      headers: { 'X-API-Key': API_KEY }
+    });
+    const data = await response.json();
+    setStats(data);
+  } catch (error) {
+    console.error('Error fetching stats:', error);
+  }
+};
 const fetchStatsHistory = async () => {
   try {
-    const response = await fetch(`${API_BASE_URL}/stats/history`, {
+    const response = await fetch(`${API_BASE_URL}/api/v1/stats/history`, {
       headers: { 'X-API-Key': API_KEY }
     });
     const data = await response.json();
@@ -93,11 +93,11 @@ useEffect(() => {
 const fetchCreators = async (sortByParam = sortBy, orderByParam = orderBy) => {
   setLoading(true);
   try {
-const [tokensRes, creatorsRes, statsRes] = await Promise.all([
-  fetch(`${API_BASE_URL}/tokens`),
-  fetch(`${API_BASE_URL}/creators?sort_by=${sortByParam}&order=${orderByParam}`),
-  fetch(`${API_BASE_URL}/stats`)
-]);
+    const [tokensRes, creatorsRes, statsRes] = await Promise.all([
+      fetch(`${API_BASE_URL}/api/v1/tokens`),
+      fetch(`${API_BASE_URL}/api/v1/creators?sort_by=${sortByParam}&order=${orderByParam}`),
+      fetch(`${API_BASE_URL}/api/v1/stats`)
+    ]);
 
     const tokensData = await tokensRes.json();
     const creatorsData = await creatorsRes.json();

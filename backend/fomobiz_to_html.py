@@ -9,7 +9,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, WebDriverException
 
 def create_driver():
@@ -23,7 +22,7 @@ def create_driver():
     options.add_argument("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
     
     driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()),
+        service=Service("/usr/local/bin/chromedriver"),
         options=options
     )
     return driver

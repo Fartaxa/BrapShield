@@ -146,7 +146,7 @@ const fetchCreators = async (sortByParam = sortBy, orderByParam = orderBy) => {
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === 'new_token') {
-        // Update creators list with new token
+        
         setCreators(prev => {
           const updatedCreators = [...prev];
           const creatorIndex = updatedCreators.findIndex(c => c.address === data.creator_address);
@@ -156,7 +156,7 @@ const fetchCreators = async (sortByParam = sortBy, orderByParam = orderBy) => {
             updatedCreators[creatorIndex].token_count += 1;
             updatedCreators[creatorIndex].latest_token_date = data.token.created_at;
           } else {
-            // New creator
+            
             updatedCreators.unshift({
               address: data.creator_address,
               name: data.creator_name,
@@ -171,7 +171,7 @@ const fetchCreators = async (sortByParam = sortBy, orderByParam = orderBy) => {
           return updatedCreators;
         });
 
-        // Show notification
+        
         showNotification(`New token: ${data.token.ticker} by ${data.creator_name}`);
       }
     };

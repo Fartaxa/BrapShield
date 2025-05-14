@@ -1,21 +1,23 @@
 FROM python:3.11-slim
 
-# Essential dependencies including CURL
+# Essential dependencies including curl
 RUN apt-get update && apt-get install -y \
     wget curl gnupg unzip xvfb libxi6 libgconf-2-4 \
     libgtk-3-0 libxss1 libasound2 fonts-liberation \
     libnss3 libnspr4 libatk-bridge2.0-0 libxkbcommon0 libgbm1 libu2f-udev
 
-# Install Google Chrome
+# Install stable Google Chrome explicitly
 RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
- && dpkg -i google-chrome-stable_current_amd64.deb || apt-get -f install -y
+ && dpkg -i google-chrome-stable_current_amd64.deb || apt-get -f install -y \
+ && rm google-chrome-stable_current_amd64.deb
 
-# Explicitly install ChromeDriver matching Google Chrome
-RUN CHROME_VERSION=$(google-chrome --version | grep -o '[0-9.]*' | head -n1) \
- && CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}") \
- && wget -q https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip \
- && unzip chromedriver_linux64.zip -d /usr/local/bin/ \
- && chmod +x /usr/local/bin/chromedriver
+# Install stable ChromeDriver explicitly (matching Chrome version above)
+ENV CHROME_DRIVER_VERSION=124.0.6367.91
+
+RUN wget -q https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip \
+    && unzip chromedriver_linux64.zip -d /usr/local/bin/ \
+    && chmod +x /usr/local/bin/chromedriver \
+    && rm chromedriver_linux64.zip
 
 # Python dependencies
 COPY requirements.txt .

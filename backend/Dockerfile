@@ -1,16 +1,16 @@
 FROM python:3.11-slim
 
-# Essential dependencies for Chrome headless and ChromeDriver
+# Essential dependencies including CURL
 RUN apt-get update && apt-get install -y \
-    wget gnupg unzip xvfb libxi6 libgconf-2-4 \
+    wget curl gnupg unzip xvfb libxi6 libgconf-2-4 \
     libgtk-3-0 libxss1 libasound2 fonts-liberation \
     libnss3 libnspr4 libatk-bridge2.0-0 libxkbcommon0 libgbm1 libu2f-udev
 
-# Install Google Chrome (stable)
+# Install Google Chrome
 RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
  && dpkg -i google-chrome-stable_current_amd64.deb || apt-get -f install -y
 
-# Explicitly install matching ChromeDriver
+# Explicitly install ChromeDriver matching Google Chrome
 RUN CHROME_VERSION=$(google-chrome --version | grep -o '[0-9.]*' | head -n1) \
  && CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}") \
  && wget -q https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip \
